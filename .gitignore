@@ -1,0 +1,9 @@
+detect_languages.egg-info
+.python-version
+.devcontainer
+.pytest_cache
+.tox
+.venv
+.vscode
+__pycache__
+.coverage

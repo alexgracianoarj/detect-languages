@@ -49,3 +49,9 @@ def test_main_language_ruby():
 def test_main_language_rust():
     detect = DetectLanguages(True, "./samples/Rust", ["programming"], [], False)
     assert detect.main_language == "Rust"
+
+
+def test_not_detected_languages():
+    detect = DetectLanguages(True, "./samples/XML", ["programming"], [], False)
+    assert len(detect.all_languages) == 0
+    assert detect.main_language is None

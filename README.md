@@ -13,7 +13,7 @@ This module discover the programming languages from a project/repository.
     > ``` python
     > from detect_languages.detect import DetectLanguages
     >
-    > detect_languages = DetectLanguages(debug=False, path=".", file_types=["programming"], exclude_dirs=[".venv", ".tox", "samples"], exclude_dirs_recursively=False)
+    > detect_languages = DetectLanguages(debug=False, path=".", language_types=["programming"], exclude_dirs=[".venv", ".tox", "samples"], exclude_dirs_recursively=False)
     >
     > print("Main language: ", detect_languages.main_language)
     > print("All languages: ", detect_languages.all_languages)

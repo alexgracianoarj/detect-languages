@@ -51,6 +51,9 @@ class DetectLanguages:
         self.__filter_language_types()
         self.__filter_exclude_dirs(path)
         self.__percentage_calculation()
+        if len(self.__analysis.keys()) == 0:
+            logging.debug("Not detected languages")
+            return
         self.main_language = max(self.__analysis.items(), key=lambda a: self.__analysis[a[0]]["size"])[0]
         logging.debug(f"Detected main language: {self.main_language}")
         self.all_languages = dict(sorted(self.__analysis.items(), key=lambda kv: float(kv[1]["percentage"]), reverse=True))

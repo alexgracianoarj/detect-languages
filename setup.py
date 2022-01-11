@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="detect-languages",
-    version="0.1.0-beta.0",
+    version="0.1.0-beta.1",
     keywords=("detect", "programming", "languages"),
     url="https://github.com/alexgracianoarj/detect-languages",
     license="MIT",

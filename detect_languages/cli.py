@@ -10,14 +10,21 @@ from detect_languages.detect import DetectLanguages
 def cli():
     pass
 
+debug_option = click.option("--debug/--no-debug", "-d", default=False, help="Debug", show_default=True)
+path_option = click.option("--path", "-p", type=click.Path(exists=True), default=".", help="Path to project", show_default=True)
+language_types_option = click.option("--language-types", "-lt", multiple=True, default=["programming", "prose", "data", "markup"], help="Language types", show_default=True)
+exclude_dirs_option = click.option("--exclude-dirs", "-ed", multiple=True, default=[], help="Exclude dirs", show_default=True)
+exclude_dirs_recursively_option = click.option("--exclude-dirs-recursively/--no-exclude-dirs-recursively", "-edr", default=False, help="Exclude dirs recursively", show_default=True)
+output_option = click.option("--output", "-o", type=click.Choice(["json", "tabulate"]), default="tabulate", help="Output format", show_default=True)
+
 
 @cli.command()
-@click.option("--debug/--no-debug", "-d", default=False, help="Debug", show_default=True)
-@click.option("--path", "-p", type=click.Path(exists=True), default=".", help="Path to project", show_default=True)
-@click.option("--language-types", "-lt", multiple=True, default=["programming", "prose", "data", "markup"], help="Language types", show_default=True)
-@click.option("--exclude-dirs", "-ed", multiple=True, default=[], help="Exclude dirs", show_default=True)
-@click.option("--exclude-dirs-recursively/--no-exclude-dirs-recursively", "-edr", default=False, help="Exclude dirs recursively", show_default=True)
-@click.option("--output", "-o", type=click.Choice(["json", "tabulate"]), default="tabulate", help="Output format", show_default=True)
+@debug_option
+@path_option
+@language_types_option
+@exclude_dirs_option
+@exclude_dirs_recursively_option
+@output_option
 def main(debug: bool, path: str, language_types: List[str], exclude_dirs: List[str], exclude_dirs_recursively: bool, output: str):
     detect_languages = DetectLanguages(debug, path, language_types, exclude_dirs, exclude_dirs_recursively)
     if output == "tabulate":
@@ -30,12 +37,12 @@ def main(debug: bool, path: str, language_types: List[str], exclude_dirs: List[s
 
 
 @cli.command()
-@click.option("--debug/--no-debug", "-d", default=False, help="Debug", show_default=True)
-@click.option("--path", "-p", type=click.Path(exists=True), default=".", help="Path to project", show_default=True)
-@click.option("--language-types", "-lt", multiple=True, default=["programming", "prose", "data", "markup"], help="Language types", show_default=True)
-@click.option("--exclude-dirs", "-ed", multiple=True, default=[], help="Exclude dirs", show_default=True)
-@click.option("--exclude-dirs-recursively/--no-exclude-dirs-recursively", "-edr", default=False, help="Exclude dirs recursively", show_default=True)
-@click.option("--output", "-o", type=click.Choice(["json", "tabulate"]), default="tabulate", help="Output format", show_default=True)
+@debug_option
+@path_option
+@language_types_option
+@exclude_dirs_option
+@exclude_dirs_recursively_option
+@output_option
 def all(debug: bool, path: str, language_types: List[str], exclude_dirs: List[str], exclude_dirs_recursively: bool, output: str):
     detect_languages = DetectLanguages(debug, path, language_types, exclude_dirs, exclude_dirs_recursively)
     if output == "tabulate":
